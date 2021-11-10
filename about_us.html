@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css" >
+    <script src="methods.js"></script>
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Document</title>
+    <style>
+        .div{
+            margin: 20px 6%;
+            padding: 1%;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            border-radius: 10px;
+            width: 300px;
+            float: left;
+            height: 420px;
+        }
+        p{
+            background-color: rgb(182, 240, 240);
+            border-radius: 10px;
+            font-size: 20px;
+            text-align: center;
+            margin: 0;
+            padding: 10px;
+        }
+        .msg{
+            color: orange;
+            padding: 0;
+            margin: 0;
+            margin-bottom: 5px;
+        }
+        @media screen and (max-width: 800px){
+            .div{
+                width: 90%;
+            }
+            .msg{
+                margin:20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="header">
+            <!-- <p id="screen" ></p> -->
+            <h1>coMake<span style="color: orange;">IT  </span><img src="./bank.jfif" style="height: 30px; width: 30px;"> Banking System</h1>
+        </div>
+        
+        <div class="navbar">
+            <a href="index.html" >Home</a>
+            <a href="about_us.html">About Us</a>
+            <a href="contact_us.html">Contact Us</a>
+            <a href="login.html" id="login">Login</a>
+            <a href="#" id="right" onclick="sign_out()">Sign Out</a>
+        </div>
+        <!-- <h1 id="message" style="text-align: center;">This is about us page</h1> -->
+        <div id="div1" class="div">
+            <h2 class="msg">Message From Team</h2>
+            <p>
+              Hello! Our Bank is an organization that makes awesome matters happen
+              for our contributors, employees, and community. We make the effort to
+              apprehend your financial situation, paintings to continuously expect
+              your needs and manual you via complex decisions.
+            </p>
+          </div>
+          <div id="div2" style="text-align: center" class="div">
+            <h2 class="msg"><u>Vision</u></h2>
+            <p >
+              To emerge as the main generation-driven, worldwide economic group that
+              gives a distinct variety of monetary offerings.
+            </p>
+            <h2 class="msg"><u>Mission</u></h2>
+            <p>
+              To construct our brand into a good global monetary institution
+              recognized for innovation, advanced overall performance, and
+              introduction of top rate fee for all stakeholders.
+            </p>
+          </div>
+          <div id="div3" style="text-align: center" class="div">
+            <h2 class="msg">Bank’s core organizations consist of:</h2>
+            <p>
+              Corporate and Investment Banking Commercial and Consumer Banking
+              Personal and Private Banking Trade Services and Foreign Exchange
+              Treasury and Cash Management Services Other Non-Bank Financial
+              Services especially via subsidiaries
+            </p>
+          </div>
+        <!-- <div style="height: 30px;border: 2px solid pink;"></div> -->
+        <div style="clear: both;"></div>
+        <div style="position: relative;box-sizing: border-box;height: 80px;"></div>
+        <div class="footer">
+            <h2>&copy;Copyrights, All Rights Reserved</h2>
+        </div>
+    </div>
+    
+    <script>
+        // getWindowSize();
+        // window.addEventListener("resize",getWindowSize);
+
+        if(localStorage.getItem("username")==undefined || localStorage.getItem("password")==undefined){
+            document.getElementById("right").style.display = "none";
+            document.getElementById("login").style.display = "block";
+        }
+        else{
+            document.getElementById("login").style.display = "none";
+            // document.getElementById("message").innerHTML = "Welcome back ,"+localStorage.getItem("username");
+            document.getElementById("right").style.display = "block";
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+body{
+    /* background-color: #adccda; */
+    background: url("banner.jpg");
+    
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+    background-size: cover;
+    font-family: sans-serif;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+.header {
+    padding: 0px;
+    text-align: center;
+    /* background: #9dc9db36; */
+    /* background: #7F000000; */
+    color: white;
+    
+}
+.header h1 {
+    font-size: 40px;
+}
+.navbar {
+    overflow: hidden;
+    background-color: rgb(59, 59, 59);
+}
+.navbar a {
+    float: left;
+    display: block;
+    color: #9dc9db;
+    text-align: center;
+    padding: 10px 20px;
+    margin: 10px 40px;
+    font-style: italic;
+}
+.navbar #right {
+    float: right;
+    margin-right: 20px;
+    text-align: center;
+    display: block;
+}
+.navbar a:hover{
+    color: orange;
+    background-color: #222;
+    border-radius: 20px;
+}
+#loginbox{
+    border-radius: 15px;
+    width: 320px;
+    height: 400px;
+    background: #000;
+    color: #fff;
+    position: relative;
+    padding: 70px 30px ;
+    margin: 5% auto;
+    display: block;
+    margin-top:100px;
+}
+.avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    top: -50px;
+    left: calc(50% - 50px);
+    position: absolute;
+}
+#loginbox h1{
+    margin: 0;   
+    padding:0 0 20px;
+    font-size: 22px;
+    text-align: center;
+}
+#loginbox p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+#loginbox input{
+    width: 100%;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+#loginbox input[type="text"], input[type="password"]{
+    border: none;
+    border-bottom: 1px solid white;
+    background:transparent;
+    /* background: #9dc9db36; */
+    outline: none;
+    color: white;
+    height: 40px;
+}
+#loginbox input[type="submit"]{
+    border-radius: 5px;
+    border: none;
+    height: 30px;
+    width: 100px;
+    margin-left: 30%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+a{
+    text-decoration: none;
+}
+.footer {
+    text-align: center;
+    background: #ddd;
+    width: 100%;
+    position: fixed;
+    height: 60px;
+    bottom: 0px;
+}
+  
+@media (min-width: 500px) and (max-width: 800px) {
+    .navbar a ,.navbar a#right{
+      float: none;
+      width: 100%;
+      margin: 0;
+    }
+    #loginbox{
+        margin-top: 60px;
+    }
+}
+@media (min-width: 700px) and (max-width: 900px) {
+    #btn_box,#create_customer,#customer_details,#transaction,#delete_customer{
+        width: 40%;
+        float: left;
+    }
+}
+/* @media screen and (max-width: 800px) { 
+    #btn_box,#create_customer,#customer_details,#transaction,#delete_customer{
+        width: 90%;
+        float: left;
+    }
+} */
+
+.container{
+    position: relative;
+}
+
+/* @media screen and (max-width: 800px){
+    .div{
+        width: 80%;
+    }
+    .msg{
+        margin:20px;
+    }
+} */
+.container,#loginbox,.navbar,.navbar a{
+    /* border: 2px solid red; */
+    box-sizing: border-box;
+} 

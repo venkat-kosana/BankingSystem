@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css" >
+    <script src="methods.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <title>Login form </title>
+</head>
+<body>
+    <div id="container">
+        <div class="header">
+            <p id="screen" ></p>
+            <h1>coMake<span style="color: tomato;">IT  </span><img src="./bank.jfif" style="height: 30px; width: 30px;"> Banking System</h1>
+        </div>
+        
+        <div class="navbar">
+            <a href="index.html">Home</a>
+            <a href="about_us.html">About Us</a>
+            <a href="contact_us.html">Contact Us</a>
+            <!-- <a href="login.html" id="login">Login</a> -->
+            <a href="#" id="right" onclick="sign_out()">Sign Out</a>
+        </div>
+        
+        <div id="loginbox">
+            <img src="user_icon.png" alt="user_icon" class="avatar">
+            <h1>Login Here</h1>
+            <form onsubmit="login()">
+                <p>Username</p>
+                <input value="sai1918" type="text" id="uname" name="" placeholder="Enter Username" required="required">
+                <p>Password</p>
+                <input value="sai000" type="password" id="password" name="" placeholder="Enter Password" required="required"><br>
+                <input type="submit" id="submit" name="" value="Login" ><br>
+            </form>
+        </div>
+        <!-- <div style="position: relative;box-sizing: border-box;height: 60px;"></div> -->
+
+        <div class="footer">
+            <h2>&copy;Copyrights, All Rights Reserved</h2>
+        </div>
+    </div>
+    <script>
+        // getWindowSize();
+        // window.addEventListener("resize",getWindowSize);
+        // validate();
+        if(localStorage.getItem("username")!=undefined && localStorage.getItem("password")!=undefined){
+            // document.getElementById("login").style.display = "none";
+            document.getElementById("right").style.display = "block";
+            document.getElementById("loginbox").style.display = "none";
+            window.location = "home.html";
+        }
+        else{
+            // document.getElementById("login").style.display = "block";
+            document.getElementById("loginbox").style.display = "block";
+            document.getElementById("right").style.display = "none";
+        }
+
+        var uname = document.getElementById("uname");
+        var password = document.getElementById("password");
+        var submit = document.getElementById("submit");
+        var usersList = new Map();
+        usersList.set("sai1918","sai000");
+        usersList.set("abc123","abc000");
+
+        uname.addEventListener("focus",function(){
+            uname.style.borderBottomColor = "green";
+        });
+        uname.addEventListener("blur",function(){
+            uname.style.borderBottomColor = "white";
+        });
+        password.addEventListener("focus",function(){
+            password.style.borderBottomColor = "green";
+        });
+        password.addEventListener("blur",function(){
+            password.style.borderBottomColor = "white";
+        });
+    </script>
+</body>
+</html>

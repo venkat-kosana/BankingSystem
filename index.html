@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="methods.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <title>Document</title>
+    <style>
+        #create_customer,
+        #customer_details,
+        #transaction,
+        #delete_customer,
+        #btn_box,
+        #update_customer {
+            margin: 20px 1%;
+            padding: 2%;
+            box-shadow: rgba(255, 255, 255, 0.925) 0px 5px 15px;
+            border-radius: 10px;
+            width: 300px;
+            float:left;
+            height: 535px;
+            display: none;
+            /* backface-visibility: hidden; */
+        
+        }
+
+        #btn_box {
+            display: block;
+            color: rgb(224, 126, 45);
+        }
+        #btn_box button
+        {
+            font-style: italic;
+        }
+        .msg_heading {
+            color: orange;
+        }
+
+        input,
+        select {
+            margin-bottom: 20px;
+            outline: none;
+            box-sizing: border-box;
+            border: none;
+            border-bottom: 1px solid white;
+            background: transparent;
+            height: 40px;
+            color: rgba(19, 15, 15, 0.945);
+            font-size: 20px;
+            width: 80%;
+            transition: border-bottom 0.5s linear;
+        }
+
+        ::placeholder {
+            color: white;
+        }
+
+        input:focus {
+            border-bottom: 2px solid rgb(224, 126, 45);
+        }
+
+        #delete_details,
+        #add_customer,
+        #get_details,
+        #all_customers,
+        #transaction_btn,
+        #update_details {
+            border-radius: 10px;
+            font-size: 22px;
+            cursor: pointer;
+            border: none;
+            background: orange;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            /* background-color: rgb(209, 226, 226); */
+            transition: outline 0.5s linear;
+        }
+
+        input::placeholder 
+        {
+        color: #000000;
+        }
+
+        #delete_details:hover,
+        #add_customer:hover,
+        #get_details:hover,
+        #all_customers:hover,
+        #transaction_btn:hover {
+            opacity: 0.8;
+        }
+
+        /* button:hover{
+            background-color: orange;
+        } */
+        .accno_err,
+        .name_err,
+        .acctype_err,
+        .bal_err,
+        .ttype_err,
+        .tamt_err {
+            color: red;
+            margin: 0;
+            visibility: hidden;
+        }
+
+        .accno_err {
+            margin-top: 10px;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+
+        .btn {
+            border-radius: 10px;
+            font-size: 22px;
+            cursor: pointer;
+            border: none;
+            background-color: orange;
+            /* background: transparent; */
+
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            width: 100%;
+            padding: 20px;
+            margin: 20px 2px;
+        }
+
+        .btn:hover {
+            transform: scale(1.01);
+            box-shadow: 0 6px 4px darkgray;
+        }
+
+        @media screen and (max-width: 800px) {
+
+            #btn_box,
+            #create_customer,
+            #customer_details,
+            #transaction,
+            #delete_customer {
+                width: 90%;
+                float: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div class="header">
+            <p id="screen"></p>
+            <h1>coMake<span style="color: orange;">IT </span><img src="./bank.jfif" style="height: 30px; width: 30px;">
+                Banking System</h1>
+        </div>
+
+        <div class="navbar">
+            <a href="index.html">Home</a>
+            <a href="about_us.html">About Us</a>
+            <a href="contact_us.html">Contact Us</a>
+            <a href="login.html" id="login">Login</a>
+            <a href="#" id="right" onclick="sign_out()">Sign Out</a>
+        </div>
+        <h1 id="message" style="text-align: center;"><i>This is home page</i></h1>
+        <div id="btn_box">
+            <button class="btn" id="create_customer_btn">Create Customer</button>
+            <button class="btn" id="customer_details_btn">Customer Details</button>
+            <button class="btn" id="transactions_btn">Transaction</button>
+            <button class="btn" id="delete_customer_btn">Delete Customer</button>
+            <button class="btn" id="update_customer_btn">Update Customer</button>
+        </div>
+        <div id="create_customer">
+            <form action="SaveServlet" autocomplete="off" method="post">
+                <h2 class="msg_heading">Create customer details</h2>
+                <p class="accno_err" id="acc_err_create">Account number must be 4 digits</p>
+                <input type="number" id="accno" name="acno" placeholder="Enter Account number" required="required">
+                <p class="name_err" id="name_err_create">Name must contain atleast 3 characters</p>
+                <input type="text" id="cname" name="name" placeholder="Enter customer name" minlength="3" maxlength="20"
+                    required="required" style="padding-bottom: 0%;">
+                <select id="acctype" name="city" style="color:aliceblue ;padding-top: 0%;">
+                    <option style="color:black">Hyderabad</option>
+                    <option style="color:black">Secunderabad</option>
+                    <option style="color:black">Medchal</option>
+                </select>
+                <select id="acctype" name="actype" style="color:aliceblue ;padding-top: 0%;">
+                    <option style="color:black">Savings</option>
+                    <option style="color:black">Current</option>
+                    <option style="color:black">FixedDeposit</option>
+                </select>
+                <p class="bal_err" id="bal_err_create">Balance must be greater than 1000</p>
+                <input type="number" id="bal" name="bal" placeholder="Enter Balance" required="required"><br>
+                <input type="number" id="bal" name="brcode" placeholder="Branch Code" required="required"><br>
+                <button id="add_customer" name="" onmouseover="createCustomer()">Add Customer</button><br>
+            </form>
+        </div>
+        <div id="customer_details">
+            <form action="ViewServlet">
+                <h2 class="msg_heading">Customer Account details</h2>
+                <p class="accno_err" id="accno_err_get">Account number must be 4 digits</p>
+                <input type="number" id="accno_details" name="accno" placeholder="Enter Account number"
+                    required="required" size="12"><br>
+                <button id="get_details" name="">Get Details</button><br><br>
+            </form>
+            <form action="ViewingServlet">
+                <button id="all_customers" name="">All Customers</button><br>
+            </form>
+
+        </div>
+        <div id="transaction">
+            <form onsubmit="transaction_submit()">
+                <h2 class="msg_heading">Transaction</h2>
+                <p class="accno_err" id="accno_err_transact" style="margin-top: 10px;">Invalid account number</p>
+                <input type="number" id="taccno" name="" placeholder="Enter Account number" required="required"
+                    size="12">
+                <p class="ttype_err" id="ttype_err">Transaction type should be w or d</p>
+
+                <select id="ttype">
+                    <option>Withdraw</option>
+                    <option>Deposit</option>
+                </select>
+                <p class="tamt_err" id="tamt_err">Transaction amount must be multiples of 100</p>
+                <input type="number" id="tamt" name="" placeholder="Enter transaction amount" required="required"><br>
+                <button id="transaction_btn" name="">Click here</button><br>
+            </form>
+        </div>
+        <div id="delete_customer">
+            <form action="DeleteServlet">
+                <h2 class="msg_heading">Delete Customer</h2>
+                <p class="accno_err" id="accno_delete_err">Invalid account number</p>
+                <input type="number" id="delete_accno" name="accno" placeholder="Enter Account number"
+                    required="required"><br>
+                <button id="delete_details" name="">Delete Customer</button><br>
+            </form>
+            <h2 style="margin: 0;color: wheat;" id="customer_details_header"></h2>
+        </div>
+        <div id="update_customer">
+            <form action="UpdateFormServlet">
+                <h2 class="msg_heading">Update Customer</h2>
+                <!-- <p class="accno_err" id="accno_delete_err">Invalid account number</p> -->
+                <input type="number" id="update_accno" name="acno" placeholder="Enter Account number"
+                    required="required"><br>
+                <button id="update_details" name="">Update Customer</button><br>
+            </form>
+            <h2 style="margin: 0;color: wheat;" id="customer_details_header"></h2>
+        </div>
+        <div style="clear: both;"></div>
+
+        <div style="position: relative;box-sizing: border-box;height: 80px;"></div>
+        <div class="footer">
+            <h2>&copy;Copyrights, All Rights Reserved</h2>
+        </div>
+    </div>
+    <script>
+
+        document.getElementById("create_customer_btn").onclick = function () {
+
+            document.getElementById("delete_customer").style.display = "none";
+            document.getElementById("create_customer").style.display = "block";
+            document.getElementById("transaction").style.display = "none";
+            document.getElementById("customer_details").style.display = "none";
+            document.getElementById("update_customer").style.display = "none";
+        }
+
+        document.getElementById("customer_details_btn").onclick = function () {
+            document.getElementById("delete_customer").style.display = "none";
+            document.getElementById("create_customer").style.display = "none";
+            document.getElementById("transaction").style.display = "none";
+            document.getElementById("customer_details").style.display = "block";
+            document.getElementById("update_customer").style.display = "none";
+        }
+
+        document.getElementById("transactions_btn").onclick = function () {
+
+            document.getElementById("delete_customer").style.display = "none";
+            document.getElementById("create_customer").style.display = "none";
+            document.getElementById("transaction").style.display = "block";
+            document.getElementById("customer_details").style.display = "none";
+            document.getElementById("update_customer").style.display = "none";
+        }
+
+        document.getElementById("delete_customer_btn").onclick = function () {
+
+            document.getElementById("delete_customer").style.display = "block";
+            document.getElementById("create_customer").style.display = "none";
+            document.getElementById("transaction").style.display = "none";
+            document.getElementById("customer_details").style.display = "none";
+            document.getElementById("update_customer").style.display = "none";
+        }
+
+        document.getElementById("update_customer_btn").onclick = function () {
+
+            document.getElementById("update_customer").style.display = "block";
+            document.getElementById("create_customer").style.display = "none";
+            document.getElementById("transaction").style.display = "none";
+            document.getElementById("customer_details").style.display = "none";
+            document.getElementById("delete_customer").style.display = "none";
+        }
+
+
+        if (localStorage.getItem("username") == undefined || localStorage.getItem("password") == undefined) {
+            document.getElementById("right").style.display = "none";
+            document.getElementById("login").style.display = "block";
+            swal.fire("please Login to go to home page").then(function () {
+                window.location = "login.html";
+            });
+
+        }
+        else {
+            document.getElementById("login").style.display = "none";
+            document.getElementById("message").innerHTML = "<i>Welcome back ," + localStorage.getItem("username")+"</i>";
+            document.getElementById("right").style.display = "block";
+        }
+
+    </script>
+</body>
+
+</html>
